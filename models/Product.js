@@ -46,3 +46,16 @@ exports.updateProductById = (product, productId) => {
         })
     })
 }
+
+exports.deleteProductById = (productId, callBack) => {
+    const productsPath = path.join(rootDir, 'data', 'products.json');
+
+    getProductsFromFile(products => {
+        let updatedProducts = products.filter(product => product.id.toString() !== productId.toString())
+    console.log(updatedProducts)
+        fs.writeFile(productsPath, JSON.stringify(updatedProducts), error => {
+            console.log(error);
+        })
+        callBack()
+    })
+}

@@ -23,9 +23,13 @@
                                    
                                         <div class="my-2 text-center d-flex  justify-content-center ">
                                             <a href="/products/edit/<%= product.id%>" class="btn btn-primary mx-2">Edit</a>
+                                            <!-- <a href="/products/delete/<%= product.id%>" class="btn btn-primary mx-2">Delete</a> -->
                                             <!-- <%- include('includes/CartButton.ejs', {product : product}) %> -->
-                                            <a href="/product/details/<%= product.id%>" class="btn btn-primary mx-2">Delete</a>
-                                            <!-- <%- include('includes/CartButton.ejs', {product : product}) %> -->
+
+                                            <form action="/products/delete" method="post">
+                                                <input type="hidden" name="productId" value="<%= product.id %>">
+                                                <button type="submit" class="btn btn-danger mx-2">Delete</button>                                            
+                                            </form>
                                         </div>
 
                                    <% } else if(!admin) { %>
