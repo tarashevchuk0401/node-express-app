@@ -1,16 +1,1 @@
-[
-    {
-        "title": "Test2 ",
-        "image": "https://www.fotografie-reizen.nl/wp-content/uploads/Fotografietips-Licht-tijdens-ondergaande-zon.jpg",
-        "price": "5545",
-        "description": "desis dadsd asdf",
-        "id": 1698169434184
-    },
-    {
-        "title": "Next",
-        "image": "https://www.fotografie-reizen.nl/wp-content/uploads/Fotografietips-Licht-tijdens-ondergaande-zon.jpg",
-        "price": "2323424",
-        "description": "sdjfsdfsdfklasdfsfl sdfasfd sdgsadf asd",
-        "id": 1698169526157
-    }
-]
+[{"id":"1698169434184","title":"Test2 ","price":"15345","description":"","image":"https://www.fotografie-reizen.nl/wp-content/uploads/Fotografietips-Licht-tijdens-ondergaande-zon.jpg"},{"id":"1698169526157","title":"New newww","price":"77","description":"","image":"https://www.canyon.com/dw/image/v2/BCML_PRD/on/demandware.static/-/Sites-canyon-master/default/dw4ac8ef04/images/full/full_2023_/2023/full_2023_3467_grizl-8-1by_P04_P5.jpg?sw=1300&sfrm=png&q=90&bgcolor=F2F2F2"}]

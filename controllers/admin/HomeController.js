@@ -4,10 +4,11 @@ const productsData = require('../../utils/products')
 exports.getHomePage = (req, res) => {
     fetchAllProducts(products => {
         const viewsData = {
+            admin: false,
             products,
             pageTitle: 'Home Page - prodList'
         }
-        res.render('homepage', viewsData);
+        res.render('product-list', viewsData);
     })
 }
 

@@ -30,7 +30,19 @@ exports.fetchAllProducts = (callBack) => {
 exports.getProductById = (productId, callBack) => {
     getProductsFromFile(products => {
         const product = products.find(p => p.id.toString() === productId);
-        console.log(product);
         callBack(product)
+    })
+}
+
+exports.updateProductById = (product, productId) => {
+    const productsPath = path.join(rootDir, 'data', 'products.json');
+    getProductsFromFile(products => {
+        const existingProductIndex = products.findIndex(prod => prod.id.toString() === productId.toString())
+
+        const updatedProducts = [...products];
+        updatedProducts[existingProductIndex] = product;
+        fs.writeFile(productsPath, JSON.stringify(updatedProducts), error => {
+            console.log(error);
+        })
     })
 }

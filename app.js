@@ -18,7 +18,7 @@ app.use(bodyParser.urlencoded({ extended: false })); // Configure body-parser fo
 
 // Routes
 app.use( homeRoute);
-app.use('/product', adminRoutes);
+app.use('/products', adminRoutes);
 app.use((req, res, next) => {
     const viewsData  = {
         pageTitle: 'Pa!gge not found//'

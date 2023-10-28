@@ -4,7 +4,7 @@
         <%- include('includes/navigation.ejs') %>
 
             <main>
-                <h1>Products list</h1>
+                <h1><%= (admin) ? 'Admin product list' : 'Products list' %></h1>
                 <% if(products.length){ %>
                     <div class=" wrapper_product">
                         <% for(let product of products) { %>
@@ -19,10 +19,21 @@
                                     </h3>
                                     <div>Price : <%= product.price%> $</div>
                                     <p><%= product.description%></p>
+                                    <% if(admin) { %>   
+                                   
+                                        <div class="my-2 text-center d-flex  justify-content-center ">
+                                            <a href="/products/edit/<%= product.id%>" class="btn btn-primary mx-2">Edit</a>
+                                            <!-- <%- include('includes/CartButton.ejs', {product : product}) %> -->
+                                            <a href="/product/details/<%= product.id%>" class="btn btn-primary mx-2">Delete</a>
+                                            <!-- <%- include('includes/CartButton.ejs', {product : product}) %> -->
+                                        </div>
+
+                                   <% } else if(!admin) { %>
                                     <div class="my-2 text-center d-flex  justify-content-center ">
                                         <a href="/product/details/<%= product.id%>" class="btn btn-primary mx-2"> View Details</a>
                                         <%- include('includes/CartButton.ejs', {product : product}) %>
                                     </div>
+                                    <%} %>
                                 </div>
                             <% } %>
                     </div>

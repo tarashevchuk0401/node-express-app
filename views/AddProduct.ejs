@@ -6,26 +6,30 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <form action="/product/add" method="POST">
+                <h2><%= edit ? 'Edit product' : 'Add product' %></h2>
+                <form action="<%= edit ? '/products/edit' : '/products/add'%>" method="POST">
                     <div>
+                        <% if(edit){ %>
+                            <input type="hidden" name="productId" value="<%= product.id%>">
+                            <% } %>
                         <p>
                             <label for="title">Title</label>
-                            <input type="text" name="title" class="form-control">
+                            <input type="text" name="title" class="form-control" value="<%= edit ? product.title : ''%>">
                         </p>
                         <p>
                             <label for="image">Image URL</label>
-                            <input type="text" name="image" class="form-control">
+                            <input type="text" name="image" class="form-control" value="<%= edit ? product.image : ''%>">
                         </p>
                         <p>
                             <label for="price">Price</label>
-                            <input type="number" step="1" name="price" class="form-control">
+                            <input type="number" step="1" name="price" class="form-control" value="<%= edit ? product.price : ''%>">
                         </p>
                         <p>
                             <label for="description">Description</label>
-                            <textarea type="text"  name="description" class="form-control"></textarea>
+                            <textarea type="text"  name="description" class="form-control" value="<%= edit ? product.description : ''%>"></textarea>
                         </p>
                         <p>
-                            <button>Add product</button>
+                            <button type="submit"><%= edit ? 'Edit' : 'Add product'%></button>
                         </p>
                     </div>
                 </form>
