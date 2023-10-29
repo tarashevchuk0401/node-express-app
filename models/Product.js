@@ -1,6 +1,7 @@
 const fs = require("fs");
 const rootDir = require('../utils/path');
 const path = require("path");
+const { deleteProductFromCart } = require("./Cart");
 
 
 getProductsFromFile = (callBack) => {
@@ -52,7 +53,9 @@ exports.deleteProductById = (productId, callBack) => {
 
     getProductsFromFile(products => {
         let updatedProducts = products.filter(product => product.id.toString() !== productId.toString())
-    console.log(updatedProducts)
+
+        deleteProductFromCart(productId)
+
         fs.writeFile(productsPath, JSON.stringify(updatedProducts), error => {
             console.log(error);
         })
