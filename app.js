@@ -4,11 +4,20 @@ const bodyParser = require('body-parser');
 const rootDir = require('./utils/path')
 const adminRoutes = require('./routes/admin');
 const homeRoute = require('./routes/home');
-
 const app = express();
+const db = require("./utils/database")
 
 app.set('view engine', 'ejs');
-app.set('views', 'views')
+app.set('views', 'views');
+
+db.execute('select * from products')
+    .then(([data, fields]) => {
+        console.log(data)
+        console.log(fields)
+    })
+    .catch((error) => {
+        console.log(error);
+    })
 
 // Static files
 app.use(express.static(path.join(rootDir, 'public')))
@@ -17,10 +26,10 @@ app.use(bodyParser.urlencoded({ extended: false })); // Configure body-parser fo
 
 
 // Routes
-app.use( homeRoute);
+app.use(homeRoute);
 app.use('/products', adminRoutes);
 app.use((req, res, next) => {
-    const viewsData  = {
+    const viewsData = {
         pageTitle: 'Pa!gge not found//'
     }
     res.status(404).render('404', viewsData)
