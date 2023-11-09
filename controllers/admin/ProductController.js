@@ -12,24 +12,30 @@ exports.postAddProductPage = (req, res) => {
 
     const product = {
         title: req.body.title,
-        image: req.body.image,
+        imageURL: req.body.image,
         price: req.body.price,
         description: req.body.description,
         id: Date.now(),
     }
-    saveProduct(product)
-    res.redirect('/');
+    saveProduct(product).then(() => {
+        res.redirect('/')
+    }).catch(error => {
+        console.log(error)
+    })
 }
 
 exports.getAdminProductsPage = (req, res) => {
-    fetchAllProducts(products => {
-        const viewsData = {
-            admin: true,
-            pageTitle: 'Admin Products',
-            products,
-        }
-        res.render('product-list', viewsData);
-    })
+    fetchAllProducts().then(([products]) => {
+            const viewsData = {
+                admin: false,
+                products,
+                pageTitle: 'Home Page - prodList'
+            }
+            res.render('product-list', viewsData);
+        })
+        .catch((error) => {
+            console.log(error);
+        });
 }
 
 exports.getEditProductPage = (req, res) => {
@@ -45,7 +51,7 @@ exports.getEditProductPage = (req, res) => {
     })
 }
 
-exports.postEditProductPage = (req,res) => {
+exports.postEditProductPage = (req, res) => {
     const product = {
         id: req.body.productId,
         title: req.body.title,
@@ -57,7 +63,7 @@ exports.postEditProductPage = (req,res) => {
     res.redirect('/products');
 }
 
-exports.postDeleteProductPage = (req,res) => {
+exports.postDeleteProductPage = (req, res) => {
     const productId = req.body.productId;
     deleteProductById(productId, () => {
         res.redirect('/products');

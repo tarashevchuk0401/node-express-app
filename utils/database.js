@@ -1,16 +1,21 @@
-const mysql = require("mysql2");
+// const mysql = require("mysql2");
 
-const db = mysql.createPool({
+// const db = mysql.createPool({
+//     host: 'localhost',
+//     user: 'root',
+//     password: 'Probook4520s',
+//     database: 'node-e-comerce-app',
+// });
+
+// module.exports = db.promise()
+
+
+const { Sequelize } = require("sequelize");
+
+const sequelize = new Sequelize('node-e-comerce-app', 'root', 'Probook4520s', {
+    dialect: 'mysql',
     host: 'localhost',
-    user: 'root',
-    password: 'Probook4520s',
-    database: 'node-e-comerce-app',
 });
 
-module.exports = db.promise()
 
-// db.execute('Select * from products where id > ?', [0], (error, result, fields) => {
-//     console.log(error);
-//     console.log(result);
-//     console.log(fields);
-// })
+module.exports = sequelize;
