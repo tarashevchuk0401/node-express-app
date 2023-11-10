@@ -40,15 +40,15 @@ app.use((req, res, next) => {
 sequelize.sync().then(result => {
 }).catch(error => console.log(error))
 
-const sampleProduct = {
-    title: 'sample prod 2',
-    description: 'sample prod 1',
-    price: 13.99,
-    imageURL: 'dsds'
-};
+// const sampleProduct = {
+//     title: 'sample prod 2',
+//     description: 'sample prod 1',
+//     price: 13.99,
+//     imageURL: 'dsds'
+// };
 
-Product.create(sampleProduct).then(result => {
-}).catch(error => console.log(error));
+// Product.create(sampleProduct).then(result => {
+// }).catch(error => console.log(error));
 
 app.listen(3000, () => {
     console.log('port 3000');

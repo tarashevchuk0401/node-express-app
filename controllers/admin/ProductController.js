@@ -1,4 +1,5 @@
 const { saveProduct, fetchAllProducts, getProductById, updateProductById, deleteProductById } = require('../../models/Product')
+const Product = require('../../models/ProductModel')
 
 exports.getAddProductPage = (req, res) => {
     const viewsData = {
@@ -17,25 +18,40 @@ exports.postAddProductPage = (req, res) => {
         description: req.body.description,
         id: Date.now(),
     }
-    saveProduct(product).then(() => {
-        res.redirect('/')
-    }).catch(error => {
-        console.log(error)
-    })
+    
+        const productObj = Product.build(product);
+        productObj.save().then(() => {
+            res.redirect('/')
+        }).catch(error => console.log(error))
+
+    // Product.create(product).then(() => {
+    //     res.redirect('/')
+    // }).catch((error) => {
+    //     console.log(error)
+    // })
+
+    // saveProduct(product).then(() => {
+    //     res.redirect('/')
+    // }).catch(error => {
+    //     console.log(error)
+    // })
 }
 
 exports.getAdminProductsPage = (req, res) => {
-    fetchAllProducts().then(([products]) => {
-            const viewsData = {
-                admin: false,
-                products,
-                pageTitle: 'Home Page - prodList'
-            }
-            res.render('product-list', viewsData);
-        })
-        .catch((error) => {
-            console.log(error);
-        });
+
+    Product.findAll().then((products) => {
+        const viewsData = {
+            admin: false,
+            products,
+            pageTitle: 'Home Page - prodList'
+        }
+        res.render('product-list', viewsData);
+    }).catch((error) => {
+        console.log(error);
+    });
+
+    
+        
 }
 
 exports.getEditProductPage = (req, res) => {
